@@ -1,6 +1,6 @@
 {
   "name": "sfcc-tools",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Tools for Salesforce Commerce Cloud (SFCC) development",
   "main": "index.js",
   "author": "Jens Simon <https://github.com/jenssimon/>",
