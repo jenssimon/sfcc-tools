@@ -11,7 +11,11 @@
     "salesforce",
     "commercecloud",
     "sfra",
-    "deploy"
+    "cartridge",
+    "integrity",
+    "git",
+    "hash",
+    "modified"
   ],
   "repository": {
     "type": "git",
