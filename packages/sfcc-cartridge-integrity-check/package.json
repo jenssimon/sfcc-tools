@@ -1,0 +1,29 @@
+{
+  "name": "sfcc-cartridge-integrity-check",
+  "version": "1.0.0",
+  "description": "Check the integrity of SFCC cartridges that shouldn't be modified",
+  "main": "index.js",
+  "author": "Jens Simon <https://github.com/jenssimon/>",
+  "license": "MIT",
+  "keywords": [
+    "sfcc",
+    "demandware",
+    "salesforce",
+    "commercecloud",
+    "sfra",
+    "deploy"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jenssimon/sfcc-tools/packages/sfcc-cartridge-integrity-check"
+  },
+  "scripts": {
+    "lint": "eslint --fix ./"
+  },
+  "private": false,
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "shelljs": "^0.8.3",
+    "table": "^5.2.3"
+  }
+}
