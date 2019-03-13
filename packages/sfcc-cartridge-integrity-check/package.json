@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/jenssimon/sfcc-tools/packages/sfcc-cartridge-integrity-check"
+    "url": "https://github.com/jenssimon/sfcc-tools/tree/master/packages/sfcc-cartridge-integrity-check"
   },
   "scripts": {
     "lint": "eslint --fix ./"
