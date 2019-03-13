@@ -1,6 +1,6 @@
 {
   "name": "sfcc-cartridge-integrity-check",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Check the integrity of SFCC cartridges that shouldn't be modified",
   "main": "index.js",
   "author": "Jens Simon <https://github.com/jenssimon/>",
