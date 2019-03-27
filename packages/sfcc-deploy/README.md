@@ -1,4 +1,4 @@
-[![NPM version][npm-image]][npm-url] [![Downloads][npm-downloads-image]][npm-url] [![Dependencies][deps-image]][deps-url] [![star this repo][gh-stars-image]][gh-url] [![fork this repo][gh-forks-image]][gh-url] ![Code Style][codestyle-image]
+[![NPM version][npm-image]][npm-url] [![Downloads][npm-downloads-image]][npm-url] [![Dependencies][deps-image]][deps-url] [![star this repo][gh-stars-image]][gh-url] [![fork this repo][gh-forks-image]][gh-url] [![Build Status][travis-image]][travis-url] ![Code Style][codestyle-image]
 
 # sfcc-deploy
 
@@ -89,5 +89,8 @@ MIT © 2019 [Jens Simon](https://github.com/jenssimon)
 [gh-url]: https://github.com/jenssimon/sfcc-tools
 [gh-stars-image]: https://badgen.net/github/stars/jenssimon/sfcc-tools
 [gh-forks-image]: https://badgen.net/github/forks/jenssimon/sfcc-tools
+
+[travis-url]: https://travis-ci.com/jenssimon/sfcc-tools
+[travis-image]: https://travis-ci.com/jenssimon/sfcc-tools.svg?branch=master
 
 [codestyle-image]: https://badgen.net/badge/code%20style/airbnb/f2a
