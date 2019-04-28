@@ -14,6 +14,11 @@ const getUncommitted = (cartridge) => {
   return res.stdout.trim().split('\n').filter(line => !!line.trim()).length;
 };
 
+const listNotAllowedCommitsForCartridge = (cartridge, hash) => shell.exec(
+  `git log --color --format="%C(auto)%H %Cgreen%aN <%aE> %C(auto)%s" ${hash}..HEAD -- cartridges/${cartridge}/`,
+  { silent: true },
+).stdout;
+
 const checkCartridgeIntegrity = (readOnlyCartridges, currIntegrityData, customizationProject) => {
   if (customizationProject) {
     const hashes = getDirHashes(readOnlyCartridges, currIntegrityData);
@@ -30,10 +35,11 @@ const checkCartridgeIntegrity = (readOnlyCartridges, currIntegrityData, customiz
       const ok = hash === currIntegrityData[cartridge];
       const isUncommitted = !!uncommitted;
       process.stdout.write(`Integrity for ${cartridge} - ${
-        ok ? chalk.bold.green('OK') : chalk.bold.red('FAIL')
+        ok ? chalk.bold.green('OK ✅') : chalk.bold.red('FAIL ❌')
       }${uncommitted ? ` - ${chalk.bold.yellow(`${uncommitted} uncommitted file(s)`)}` : ''}\n`);
       if (!ok) {
         modifiedCartridges.push(cartridge);
+        process.stdout.write(`\n${listNotAllowedCommitsForCartridge(cartridge, currIntegrityData[cartridge])}\n`);
       }
       if (isUncommitted) {
         uncommittedChanges.push(cartridge);
