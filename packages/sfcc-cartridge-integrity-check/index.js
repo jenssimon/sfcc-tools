@@ -3,7 +3,7 @@ const shell = require('shelljs');
 const chalk = require('chalk');
 const { table, getBorderCharacters } = require('table');
 
-const getDirHashes = readOnlyCartridges => readOnlyCartridges.reduce((acc, cartridge) => {
+const getDirHashes = (readOnlyCartridges) => readOnlyCartridges.reduce((acc, cartridge) => {
   const res = shell.exec(`git rev-list -1 HEAD -- cartridges/${cartridge}/`, { silent: true });
   acc[cartridge] = res.stdout.trim();
   return acc;
@@ -11,7 +11,7 @@ const getDirHashes = readOnlyCartridges => readOnlyCartridges.reduce((acc, cartr
 
 const getUncommitted = (cartridge) => {
   const res = shell.exec(`git ls-files -m cartridges/${cartridge}/`, { silent: true });
-  return res.stdout.trim().split('\n').filter(line => !!line.trim()).length;
+  return res.stdout.trim().split('\n').filter((line) => !!line.trim()).length;
 };
 
 const listNotAllowedCommitsForCartridge = (cartridge, hash) => shell.exec(

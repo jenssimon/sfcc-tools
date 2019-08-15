@@ -49,7 +49,7 @@ module.exports = async (options) => {
 
   const additionalActiveSteps = additionalSteps
     ? additionalSteps
-      .filter(additionalStep => options[additionalStep.condition])
+      .filter((additionalStep) => options[additionalStep.condition])
       .map(({
         name, emoji, fn, specialFinish,
       }) => defineStep(name, emoji, () => fn({
