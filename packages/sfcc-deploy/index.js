@@ -61,14 +61,14 @@ module.exports = async (options, sfccCi) => {
   const stepCount = (useSfccCi ? 2 : 6) + additionalActiveSteps.length;
   steps = new Steps(stepCount);
 
-  const zipFileName = `${useSfccCi ? version : 'cartridges'}.zip`;
+  const zipFileName = 'cartridges.zip';
   const zipFile = rootDir + zipFileName;
 
   const zipCartridges = defineStep('Creating ZIP', 'hammer', async () => {
     const archive = archiver(zipFile, {
       zlib: { level: 9 },
     });
-    archive.directory(`${rootDir}cartridges/`, false);
+    archive.directory(`${rootDir}cartridges/`, !useSfccCi ? false : version);
     await archive.finalize();
 
     const stats = fs.statSync(zipFile);
