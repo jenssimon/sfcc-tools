@@ -4,19 +4,21 @@ const Steps = require('cli-step');
 const chalk = require('chalk');
 const archiver = require('archiver-promise');
 
-module.exports = async (options) => {
+module.exports = async (options, sfccCi) => {
   const {
     credentials: config,
     version,
     root,
     additionalSteps,
   } = options;
+  const useSfccCi = config.clientId && config.clientSecret && sfccCi;
   const rootDir = root || './dist/';
-  const dwdav = new DWDAV({
+  const dwdav = !useSfccCi ? new DWDAV({
     ...config,
     folder: 'Cartridges',
     version,
-  });
+  }) : undefined;
+  let token;
 
   let stepText;
   let step;
@@ -53,13 +55,13 @@ module.exports = async (options) => {
       .map(({
         name, emoji, fn, specialFinish,
       }) => defineStep(name, emoji, () => fn({
-        options, dwdav, rootDir, step, stepText,
+        options, dwdav, sfccCi, token, useSfccCi, rootDir, step, stepText,
       }), specialFinish))
     : [];
-  const stepCount = 6 + additionalActiveSteps.length;
+  const stepCount = (useSfccCi ? 2 : 6) + additionalActiveSteps.length;
   steps = new Steps(stepCount);
 
-  const zipFileName = 'cartridges.zip';
+  const zipFileName = `${useSfccCi ? version : 'cartridges'}.zip`;
   const zipFile = rootDir + zipFileName;
 
   const zipCartridges = defineStep('Creating ZIP', 'hammer', async () => {
@@ -110,13 +112,42 @@ module.exports = async (options) => {
     await dwdav.delete(zipFileName);
   });
 
+  const sfccCiDeploy = defineStep('Deploy code', 'truck', async () => {
+    token = await new Promise((resolve, reject) => {
+      sfccCi.auth.auth(config.clientId, config.clientSecret, (err, receivedToken) => {
+        if (!err) {
+          resolve(receivedToken);
+        } else {
+          reject(err);
+        }
+      });
+    });
+    await new Promise((resolve, reject) => {
+      sfccCi.code.deploy(config.hostname, zipFile, token, {
+        pfx: config.p12 || undefined,
+        passphrase: config.passphrase ? config.passphrase : undefined,
+      }, (err) => {
+        if (!err) {
+          resolve();
+        } else {
+          reject(err);
+        }
+      });
+    });
+  });
+
+
   try {
     await zipCartridges();
-    await checkConnection();
-    await checkCodeVersionExistance();
-    await uploadZip();
-    await unzip();
-    await deleteZip();
+    if (!useSfccCi) {
+      await checkConnection();
+      await checkCodeVersionExistance();
+      await uploadZip();
+      await unzip();
+      await deleteZip();
+    } else {
+      await sfccCiDeploy();
+    }
     additionalActiveSteps.forEach(async (additionalStep) => {
       await additionalStep();
     });
