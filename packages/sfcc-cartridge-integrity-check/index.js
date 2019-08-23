@@ -9,10 +9,14 @@ const getDirHashes = (readOnlyCartridges) => readOnlyCartridges.reduce((acc, car
   return acc;
 }, {});
 
-const getUncommitted = (cartridge) => {
-  const res = shell.exec(`git ls-files -m cartridges/${cartridge}/`, { silent: true });
-  return res.stdout.trim().split('\n').filter((line) => !!line.trim()).length;
-};
+const getUncommitted = (cartridge) => [
+  shell.exec(`git diff --name-only cartridges/${cartridge}/`, { silent: true }),
+  shell.exec(`git diff --name-only --cached cartridges/${cartridge}/`, { silent: true }),
+]
+  .map(({ stdout }) => stdout.trim().split('\n'))
+  .reduce((acc, val) => acc.concat(val), [])
+  .filter((line) => !!line.trim())
+  .length;
 
 const listNotAllowedCommitsForCartridge = (cartridge, hash) => shell.exec(
   `git log --color --format="%C(auto)%H %Cgreen%aN <%aE> %C(auto)%s" ${hash}..HEAD -- cartridges/${cartridge}/`,
@@ -49,8 +53,8 @@ const checkCartridgeIntegrity = (readOnlyCartridges, currIntegrityData, customiz
       process.stdout.write(chalk.bold.red('\n🛑 Some read only cartridges are modified!!!\n'));
     }
     if (uncommittedChanges.length) {
-      // eslint-disable-next-line max-len
-      process.stdout.write(chalk.bold.yellow('\n✋ You have uncommitted changes in read-only cartridge(s)!\nDo you really want to modify these cartridge(s)?\n'));
+      process.stdout.write(chalk.bold.yellow('✋ You have uncommitted changes in read-only cartridge(s)!\n'));
+      process.stdout.write(chalk.yellow('\nDo you really want to modify these cartridge(s)?\n'));
     }
   } else {
     // eslint-disable-next-line max-len
@@ -73,7 +77,7 @@ const generateCartridgeIntegrityDataFile = function (readOnlyCartridges, filenam
     },
     drawHorizontalLine: () => false,
   }));
-  fs.writeFileSync(filename, JSON.stringify(hashes));
+  fs.writeFileSync(filename, `${JSON.stringify(hashes, undefined, 2)}\n`);
 };
 
 module.exports = ({
