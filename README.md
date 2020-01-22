@@ -9,4 +9,4 @@
 
 ## License
 
-MIT © 2019 [Jens Simon](https://github.com/jenssimon)
+MIT © 2020 [Jens Simon](https://github.com/jenssimon)

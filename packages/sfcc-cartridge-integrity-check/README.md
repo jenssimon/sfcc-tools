@@ -46,14 +46,14 @@ generateCartridgeIntegrityDataFile('./path/to/file.json');
 
 ## License
 
-MIT © 2019 [Jens Simon](https://github.com/jenssimon)
+MIT © 2020 [Jens Simon](https://github.com/jenssimon)
 
 [npm-url]: https://www.npmjs.com/package/sfcc-cartridge-integrity-check
 [npm-image]: https://badgen.net/npm/v/sfcc-cartridge-integrity-check
 [npm-downloads-image]: https://badgen.net/npm/dt/sfcc-cartridge-integrity-check
 
-[deps-url]: https://david-dm.org/jenssimon/sfcc-tools/packages/sfcc-cartridge-integrity-check
-[deps-image]: https://badgen.net/david/dep/jenssimon/sfcc-tools/packages/sfcc-cartridge-integrity-check
+[deps-url]: https://david-dm.org/jenssimon/sfcc-tools
+[deps-image]: https://badgen.net/david/dep/jenssimon/sfcc-tools
 
 [gh-url]: https://github.com/jenssimon/sfcc-tools
 [gh-stars-image]: https://badgen.net/github/stars/jenssimon/sfcc-tools
