@@ -1,6 +1,6 @@
 {
   "name": "sfcc-deploy",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Deploy cartridges to a Salesforce Commerce Cloud (SFCC) instance",
   "main": "index.js",
   "author": "Jens Simon <https://github.com/jenssimon/>",
