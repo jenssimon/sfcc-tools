@@ -81,7 +81,7 @@ MIT © 2020 [Jens Simon](https://github.com/jenssimon)
 
 [npm-url]: https://www.npmjs.com/package/sfcc-deploy
 [npm-image]: https://badgen.net/npm/v/sfcc-deploy
-[npm-downloads-image]: https://badgen.net/npm/dt/sfcc-deploy
+[npm-downloads-image]: https://badgen.net/npm/dw/sfcc-deploy
 
 [deps-url]: https://david-dm.org/jenssimon/sfcc-tools
 [deps-image]: https://badgen.net/david/dep/jenssimon/sfcc-tools
