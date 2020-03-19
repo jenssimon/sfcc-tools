@@ -115,7 +115,7 @@ module.exports = async (options) => {
 
   const sfccCiDeploy = defineStep('Deploy code', 'truck', async () => {
     token = await new Promise((resolve, reject) => {
-      sfccCi.auth.api.auth(config.clientId, config.clientSecret, (err, receivedToken) => {
+      sfccCi.auth.auth(config.clientId, config.clientSecret, (err, receivedToken) => {
         if (!err) {
           resolve(receivedToken);
         } else {
@@ -124,7 +124,7 @@ module.exports = async (options) => {
       });
     });
     await new Promise((resolve, reject) => {
-      sfccCi.code.api.deploy(config.hostname, zipFile, token, {
+      sfccCi.code.deploy(config.hostname, zipFile, token, {
         pfx: config.p12 || undefined,
         passphrase: config.passphrase ? config.passphrase : undefined,
       }, (err) => {
