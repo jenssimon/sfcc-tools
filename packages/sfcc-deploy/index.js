@@ -3,15 +3,16 @@ const DWDAV = require('dwdav');
 const Steps = require('cli-step');
 const chalk = require('chalk');
 const archiver = require('archiver-promise');
+const sfccCi = require('sfcc-ci');
 
-module.exports = async (options, sfccCi) => {
+module.exports = async (options) => {
   const {
     credentials: config,
     version,
     root,
     additionalSteps,
   } = options;
-  const useSfccCi = config.clientId && config.clientSecret && sfccCi;
+  const useSfccCi = config.clientId && config.clientSecret;
   const rootDir = root || './dist/';
   const dwdav = !useSfccCi ? new DWDAV({
     ...config,
@@ -55,7 +56,7 @@ module.exports = async (options, sfccCi) => {
       .map(({
         name, emoji, fn, specialFinish,
       }) => defineStep(name, emoji, () => fn({
-        options, dwdav, sfccCi, token, useSfccCi, rootDir, step, stepText,
+        options, dwdav, token, useSfccCi, rootDir, step, stepText,
       }), specialFinish))
     : [];
   const stepCount = (useSfccCi ? 2 : 6) + additionalActiveSteps.length;
@@ -114,7 +115,7 @@ module.exports = async (options, sfccCi) => {
 
   const sfccCiDeploy = defineStep('Deploy code', 'truck', async () => {
     token = await new Promise((resolve, reject) => {
-      sfccCi.auth.auth(config.clientId, config.clientSecret, (err, receivedToken) => {
+      sfccCi.auth.api.auth(config.clientId, config.clientSecret, (err, receivedToken) => {
         if (!err) {
           resolve(receivedToken);
         } else {
@@ -123,7 +124,7 @@ module.exports = async (options, sfccCi) => {
       });
     });
     await new Promise((resolve, reject) => {
-      sfccCi.code.deploy(config.hostname, zipFile, token, {
+      sfccCi.code.api.deploy(config.hostname, zipFile, token, {
         pfx: config.p12 || undefined,
         passphrase: config.passphrase ? config.passphrase : undefined,
       }, (err) => {

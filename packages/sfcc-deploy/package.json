@@ -25,6 +25,7 @@
     "archiver-promise": "^1.0.0",
     "chalk": "^3.0.0",
     "cli-step": "^1.0.2",
-    "dwdav": "^3.5.1"
+    "dwdav": "^3.5.1",
+    "sfcc-ci": "^2.3.1"
   }
 }
