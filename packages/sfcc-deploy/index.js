@@ -137,7 +137,6 @@ module.exports = async (options) => {
     });
   });
 
-
   try {
     await zipCartridges();
     if (!useSfccCi) {

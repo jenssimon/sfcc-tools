@@ -23,7 +23,7 @@
   "private": false,
   "dependencies": {
     "archiver-promise": "^1.0.0",
-    "chalk": "^3.0.0",
+    "chalk": "^4.1.0",
     "cli-step": "^1.0.2"
   },
   "peerDependencies": {
@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "dwdav": "^3.5.1",
-    "sfcc-ci": "^2.4.0"
+    "sfcc-ci": "^2.6.0"
   }
 }
