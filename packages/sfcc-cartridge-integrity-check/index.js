@@ -25,7 +25,7 @@ const listNotAllowedCommitsForCartridge = (cartridge, hash) => shell.exec(
 
 const checkCartridgeIntegrity = (readOnlyCartridges, currIntegrityData, customizationProject) => {
   if (customizationProject) {
-    const hashes = getDirHashes(readOnlyCartridges, currIntegrityData);
+    const hashes = getDirHashes(readOnlyCartridges);
     const modifiedCartridges = [];
     const uncommittedChanges = [];
     const integrityData = {};
