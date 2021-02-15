@@ -24,9 +24,10 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@jenssimon/eslint-config-base": "^3.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.14.0",
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@jenssimon/eslint-config-base": "^3.1.0",
+    "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-babel": "^5.3.1",
@@ -36,11 +37,11 @@
     "eslint-plugin-jest": "^24.1.3",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-optimize-regex": "^1.2.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-react-redux": "^3.3.0",
-    "eslint-plugin-sonarjs": "^0.5.0",
-    "oao": "^2.0.0"
+    "eslint-plugin-react-redux": "^3.3.2",
+    "eslint-plugin-sonarjs": "^0.6.0",
+    "oao": "^2.0.1"
   }
 }
