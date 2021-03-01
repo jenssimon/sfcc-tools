@@ -4,6 +4,10 @@
 
 > Check the integrity of SFCC cartridges that shouldn't be modified.
 
+## ️️⚠️️️️⚠️⚠️ MOVED ⚠️⚠️⚠️
+
+This repository moved to [sfcc-cartridge-integrity-check](https://github.com/jenssimon/sfcc-cartridge-integrity-check)
+
 ![Screenshot](https://github.com/jenssimon/sfcc-tools/raw/master/packages/sfcc-cartridge-integrity-check/screenshot.png)
 
 ## Install

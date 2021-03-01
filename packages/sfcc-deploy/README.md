@@ -4,6 +4,10 @@
 
 > Deploy cartridges to a Salesforce Commerce Cloud (SFCC) instance.
 
+## ️️⚠️️️️⚠️⚠️ MOVED ⚠️⚠️⚠️
+
+This repository moved to [sfcc-deploy](https://github.com/jenssimon/sfcc-deploy)
+
 ![Screenshot](https://github.com/jenssimon/sfcc-tools/raw/master/packages/sfcc-deploy/deploy.gif)
 
 ## Installation
